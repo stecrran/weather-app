@@ -1,0 +1,54 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>Settings</ion-title>
+  </ion-navbar>
+</ion-header>
+
+<style>
+	#settings {
+		border: 1px solid black;
+		background:#0099ff;
+	}
+	
+</style>
+
+<ion-content padding id="settings">
+		
+	<ion-list>	
+		<h4><ion-icon name="globe"></ion-icon><b> Set location:</b> {{ city }}</h4>
+		<ion-item>
+			<ion-label>City: </ion-label>
+			<ion-input [(ngModel)]="city" placeholder="(enter location here)"></ion-input>
+		</ion-item>
+	</ion-list>
+	
+	<ion-list>
+		<ion-item>
+			<h1><b>Settings</b></h1>
+		</ion-item>	
+	</ion-list>
+
+	<ion-list radio-group [(ngModel)]="currentSetting">
+		<ion-list-header>
+			Units: <b>{{ currentSetting }}</b>
+		</ion-list-header>
+		
+		<ion-item>
+			<ion-label>Standard</ion-label>
+			<ion-radio value="standard"></ion-radio>
+		</ion-item>
+		
+		<ion-item>
+			<ion-label>Metric</ion-label>
+			<ion-radio value="metric"></ion-radio>
+		</ion-item>
+		
+		<ion-item>
+			<ion-label>Imperial</ion-label>
+			<ion-radio value="imperial"></ion-radio>
+		</ion-item>
+		
+	</ion-list>
+	<button ion-button (click)="saveSetting()">Save</button>
+	
+</ion-content>

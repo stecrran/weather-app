@@ -1,0 +1,108 @@
+<ion-header>
+  <ion-navbar>
+    <ion-title>
+      G00097717
+    </ion-title>
+	<ion-buttons end> <button (click)="openSettings()"> <ion-icon name="settings"></ion-icon></button> </ion-buttons>
+  </ion-navbar>
+</ion-header>
+
+<style>
+	table {
+		border: 1px solid black;
+		width:50%;
+	}
+	
+	th {
+		background-color:#a6b0bd;
+		border: 1px solid black;
+		width:50%;
+		font-size: 16px;
+	}
+
+	td {
+		background-color:#a0bbde;
+		border: 1px solid black;
+		text-align:center;
+		font-size: 14px;
+	}
+	
+	#news {
+		background-color:#2a2b2e;
+		border: 1px solid black;
+	}
+</style>
+
+<ion-content style="background:#0099ff" padding>
+
+	<h1>Weather for {{ city_name }}</h1>
+
+	<map></map>
+
+	<ion-item *ngFor="let weather of current_weather" style="background:#0099ff" >
+		<img width="120" height="120" src="http://openweathermap.org/img/wn/{{ weather.icon }}@2x.png">
+		<br>
+	<table>
+	  <tr>
+			<th>Forecast</th>
+			<th>Description</th>
+	  </tr>
+	  <tr>
+			<td>{{ weather.main }}</td>
+			<td>{{ weather.description }}</td>
+	  </tr> 
+	</table>
+
+	<br>
+
+	<table>
+		<tr>
+			<th colspan="2" style="background-color:#7e8996">Temperature</th>
+		</tr>
+		<tr>
+			<th>Actual</th>
+			<th>Feel</th>
+		</tr>
+		<tr>
+			<td>{{ temperature["temp"] }}{{ unit }}</td>
+			<td>{{ temperature["feels_like"] }}{{ unit }}</td>
+		</tr>
+		<tr>
+			<th>High</th>
+			<th>Low</th>
+		</tr>
+		<tr>
+			<td>{{ temperature["temp_max"] }}{{ unit }}</td>
+			<td>{{ temperature["temp_min"] }}{{ unit }}</td>
+		</tr>
+	</table>
+
+	<br>
+
+	<table>
+		<tr>
+			<th colspan="2">Humidity</th>
+		</tr>
+		<tr>
+			<td>{{ temperature["humidity"] }}%</td>
+		</tr>
+	</table>
+
+	</ion-item>
+
+	<ion-item style="background:#0099ff">
+		<button ion-button [disabled]="newsDisabled" (click)="displayNews()">NEWS</button>
+	</ion-item>
+
+	<ion-item id="news" [hidden]="display">
+		<h1 style="color:#9fa2ab"><b>Total News Stories from {{ country }}: {{ story_results }}</b></h1>
+		
+		<ion-item *ngFor="let item of article" style="background-color:#2a2b2e">
+			<a href="{{ item.url }}" target="_blank"><img width="300" height="180" [src]="item.urlToImage"></a>
+			<p><a href="{{ item.url }}" target="_blank">{{ item.title }}</a></p>
+			<p><a href="{{ item.url }}" target="_blank">({{ item.description }})</a></p>			
+		</ion-item>
+	</ion-item>
+
+
+</ion-content>
